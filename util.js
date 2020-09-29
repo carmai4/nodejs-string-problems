@@ -1,3 +1,42 @@
+const CONSTANTS = require('./constants');
+
+/**
+ * returns minimum number of characters to be added to make a strong password
+ * that contains at least one uppercase letter, one lowercase letter, one special character, one number
+ * @param {string} s password to be evaluated
+ * @param {number} length defaults to 6
+ */
+function strongPassword(s, length = 6) {
+  const diff = length - s.length;
+  const checks = [
+    hasCharacter(s, CONSTANTS.numbers),
+    hasCharacter(s, CONSTANTS.special),
+    hasCharacter(s, CONSTANTS.lowercase),
+    hasCharacter(s, CONSTANTS.uppercase)
+  ];
+
+  const num = checks.reduce((acc, curr) => {
+    return curr ? acc : acc + 1;
+  }, 0);
+
+  return Math.max(diff, num);
+}
+
+/**
+ * returns true if string contains one of chars
+ * @param {string} s
+ * @param {string} chars
+ */
+function hasCharacter(s, chars) {
+  let found = false;
+  for (let i = 0; i < s.length; i++) {
+    if (!found) {
+      found = chars.indexOf(s[i]) > -1;
+    }
+  }
+  return found;
+}
+
 /**
  * returns string reduced by eliminating pairs of same character
  * example: 'aab' -> 'b', 'aaa' -> 'a', 'aabbc' -> 'c'
@@ -82,5 +121,7 @@ module.exports = {
   reduceString,
   backwards,
   stringsAreSame,
-  generateRandomString
+  generateRandomString,
+  hasCharacter,
+  strongPassword
 };

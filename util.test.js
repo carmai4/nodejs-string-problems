@@ -1,5 +1,13 @@
 "use strict";
-const { reduceString, backwards, stringsAreSame, generateRandomString } = require('./util');
+const {
+  reduceString,
+  backwards,
+  stringsAreSame,
+  generateRandomString,
+  strongPassword,
+  hasCharacter
+} = require('./util');
+const CONSTANTS = require('./constants');
 
 test('reduceString returns as expected', () => {
   expect(reduceString('baa')).toBe('b');
@@ -53,4 +61,23 @@ test('generateRandomString returns as expected', () => {
   expect(result2.length).toBe(10);
   expect(result3.length).toBe(20);
   expect(result4.length).toBe(rand);
+});
+
+test('hasCharacter returns as expected', () => {
+  const str1 = 'abc';
+  const str2 = 'zzz';
+  expect(hasCharacter(str1, CONSTANTS.lowercase)).toBe(true);
+  expect(hasCharacter(str2, CONSTANTS.lowercase)).toBe(true);
+});
+
+test('strongPassword returns as expected', () => {
+  const str1 = 'aSdfghj@';
+  const str2 = 'onlylowercaseletters';
+  const str3 = 'onlyLetteRs';
+  const str4 = '1@aA';
+  expect(strongPassword(str1)).toBe(1);
+  expect(strongPassword(str2)).toBe(3);
+  expect(strongPassword(str3)).toBe(2);
+  expect(strongPassword(str4)).toBe(2);
+  expect(strongPassword(str4, 12)).toBe(8);
 });
