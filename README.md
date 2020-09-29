@@ -23,7 +23,7 @@ Explanation 2
 baab → bb → Empty String
 
 ## strongPassword
-A password is considered strong if its length is at least 6 and it contains at least one digit, at least one lowercase English character, at least one uppercase English character, and at least one special character. Given a string, return the minimum number of characters that must be added to make a strong password.  
+A password is considered strong if its length is at least 6 (by default) and it contains at least one digit, at least one lowercase English character, at least one uppercase English character, and at least one special character. Given a string, return the minimum number of characters that must be added to make a strong password.  
 numbers = "0123456789"  
 lower_case = "abcdefghijklmnopqrstuvwxyz"  
 upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  
