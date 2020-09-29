@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-super-reduced-string",
+  "version": "1.0.0",
+  "description": "Super Reduced String",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carmai4/nodejs-super-reduced-string.git"
+  },
+  "author": "Caroline Maiorana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carmai4/nodejs-super-reduced-string/issues"
+  },
+  "homepage": "https://github.com/carmai4/nodejs-super-reduced-string#readme",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
