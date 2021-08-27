@@ -1,4 +1,5 @@
 const CONSTANTS = require('./constants');
+const _ = require('lodash');
 
 /**
  * returns minimum number of characters to be added to make a strong password
@@ -22,19 +23,20 @@ function strongPassword(s, length = 6) {
   return Math.max(diff, num);
 }
 
+// TODO
+
 /**
  * returns true if string contains one of chars
  * @param {string} s
  * @param {string} chars
  */
 function hasCharacter(s, chars) {
-  let found = false;
   for (let i = 0; i < s.length; i++) {
-    if (!found) {
-      found = chars.indexOf(s[i]) > -1;
+    if (chars.indexOf(s[i]) > -1) {
+      return true;
     }
   }
-  return found;
+  return false;
 }
 
 /**
@@ -71,7 +73,7 @@ function reduceString(s) {
 }
 
 /**
- * returns str reversed
+ * returns returns str reversed
  * @param {string} str
  */
 function backwards(str) {
@@ -117,11 +119,43 @@ function generateRandomString(length) {
   return result;
 };
 
+/**
+ * returns the length of the longest substring found without repeating characters
+ * e.g. "pwwkew" -> 3, "bbb" -> 1
+ * @param {*} s 
+ */
+function longestSubstringWithoutRepeatingCharacters(s) {
+  let longest = 0;
+  
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i + 1; j < s.length + 1; j++) {
+      let hasRepeat = false;
+      const sub = s.substr(i, j);
+      const lookup = {};
+
+      // check for repeat characters
+      for (let k = 0; k < sub.length; k++) {
+        if (lookup[sub[k]]) {
+          hasRepeat = true;
+          break;
+        }
+
+        lookup[sub[k]] = 1; // true
+      }
+
+      if (!hasRepeat && sub.length > longest) longest = sub.length;
+    }
+  }
+
+  return longest;
+}
+
 module.exports = {
   reduceString,
   backwards,
   stringsAreSame,
   generateRandomString,
   hasCharacter,
-  strongPassword
+  strongPassword,
+  longestSubstringWithoutRepeatingCharacters
 };

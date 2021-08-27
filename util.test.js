@@ -5,7 +5,8 @@ const {
   stringsAreSame,
   generateRandomString,
   strongPassword,
-  hasCharacter
+  hasCharacter,
+  longestSubstringWithoutRepeatingCharacters
 } = require('./util');
 const CONSTANTS = require('./constants');
 
@@ -63,6 +64,7 @@ test('generateRandomString returns as expected', () => {
   expect(result4.length).toBe(rand);
 });
 
+// TODO
 test('hasCharacter returns as expected', () => {
   const str1 = 'abc';
   const str2 = 'zzz';
@@ -80,4 +82,17 @@ test('strongPassword returns as expected', () => {
   expect(strongPassword(str3)).toBe(2);
   expect(strongPassword(str4)).toBe(2);
   expect(strongPassword(str4, 12)).toBe(8);
+});
+
+test('longestSubstringWithoutRepeatingCharacters returns as expected', () => {
+  const str1 = 'pwwkew';
+  const str2 = 'a';
+  const str3 = 'abcc';
+  const str4 = 'z3kkds';
+  const str5 = 'woeidjkxhhhcfdj4884jhejjksjhmmwjdjkjehwwkejw';
+  expect(longestSubstringWithoutRepeatingCharacters(str1)).toBe(3);
+  expect(longestSubstringWithoutRepeatingCharacters(str2)).toBe(1);
+  expect(longestSubstringWithoutRepeatingCharacters(str3)).toBe(3);
+  expect(longestSubstringWithoutRepeatingCharacters(str4)).toBe(3);
+  expect(longestSubstringWithoutRepeatingCharacters(str5)).toBe(9);
 });
