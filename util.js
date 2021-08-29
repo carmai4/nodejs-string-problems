@@ -126,25 +126,21 @@ function generateRandomString(length) {
  */
 function longestSubstringWithoutRepeatingCharacters(s) {
   let longest = 0;
-  
-  for (let start = 0; start < s.length; start++) {
-    const lookup = {};
-    let currentLength = 0;
+  let currentLength = 0;
+  let lookup = {};
 
-    for (let end = start; end < s.length; end++) {
-      
-      // if duplicate char found then break
-      if (lookup[s[end]]) {
-        break;
-      }
-
-      currentLength++;
-      lookup[s[end]] = 1; // true
-
-      if (currentLength > longest) {
-        longest = currentLength;
-      }
+  for (let at = 0; at < s.length; at++) {
+    const currentChar = s[at];
+    if (lookup[currentChar] != null) {
+      at = lookup[currentChar];
+      lookup = {};
+      currentLength = 0;
+      continue;
     }
+
+    currentLength++;
+    lookup[currentChar] = at;
+    longest = Math.max(longest, currentLength);
   }
 
   return longest;
