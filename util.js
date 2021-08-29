@@ -32,8 +32,8 @@ function strongPassword(s, length = 6) {
  */
 function hasCharacter(s, chars) {
   for (let i = 0; i < s.length; i++) {
-    if (chars.indexOf(s[i]) > -1) {
-      return true;
+    for (let j = 0; j < chars.length; j++) {
+      if (s[i] === chars[j])  return true;
     }
   }
   return false;
@@ -127,23 +127,23 @@ function generateRandomString(length) {
 function longestSubstringWithoutRepeatingCharacters(s) {
   let longest = 0;
   
-  for (let i = 0; i < s.length; i++) {
-    for (let j = i + 1; j < s.length + 1; j++) {
-      let hasRepeat = false;
-      const sub = s.substr(i, j);
-      const lookup = {};
+  for (let start = 0; start < s.length; start++) {
+    const lookup = {};
+    let currentLength = 0;
 
-      // check for repeat characters
-      for (let k = 0; k < sub.length; k++) {
-        if (lookup[sub[k]]) {
-          hasRepeat = true;
-          break;
-        }
-
-        lookup[sub[k]] = 1; // true
+    for (let end = start; end < s.length; end++) {
+      
+      // if duplicate char found then break
+      if (lookup[s[end]]) {
+        break;
       }
 
-      if (!hasRepeat && sub.length > longest) longest = sub.length;
+      currentLength++;
+      lookup[s[end]] = 1; // true
+
+      if (currentLength > longest) {
+        longest = currentLength;
+      }
     }
   }
 

@@ -68,8 +68,11 @@ test('generateRandomString returns as expected', () => {
 test('hasCharacter returns as expected', () => {
   const str1 = 'abc';
   const str2 = 'zzz';
+  const str3 = 'abckoisdjflskwl';
   expect(hasCharacter(str1, CONSTANTS.lowercase)).toBe(true);
   expect(hasCharacter(str2, CONSTANTS.lowercase)).toBe(true);
+  expect(hasCharacter(str3, 'qqqq')).toBe(false);
+  expect(hasCharacter(str3, 'qqqw')).toBe(true);
 });
 
 test('strongPassword returns as expected', () => {
